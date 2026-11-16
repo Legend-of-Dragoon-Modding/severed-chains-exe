@@ -25,3 +25,16 @@ jobs:
 
     - name: Build Solution
       run: msbuild SeveredChainsLaunch\SeveredChainsLaunch.sln /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
+
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: 'true'
+        artifacts: 'SeveredChainsLaunch\SeveredChainsLaunch\bin\Release\Severed Chains.exe'
+        commit: ${{ github.sha }}
+        draft: 'false'
+        generateReleaseNotes: 'false'
+        name: 'Executable'
+        prerelease: 'false'
+        tag: 'release'
+        token: ${{ secrets.GITHUB_TOKEN }}
